@@ -108,6 +108,10 @@ psych::describe(amy_pet_04$diff_examdate)
 # looks pretty good
 # can save out this data for use down the line
 
+# Get IDs for participants with PET data
+PET_IDs <- amy_pet_04$RID
+
+
 # Now, get cog data at bl and m24
 
 cog_data <- adnimerge_01 %>%
@@ -180,7 +184,9 @@ adnimerge_03 <- adnimerge %>%
          PTRACCAT, APOE4, MMSE, DX, DX.bl) %>%
   filter(VISCODE == "bl") %>%
   rename(EXAMDATE_BL = EXAMDATE.bl,
-         DX_BL = DX.bl)
+         DX_BL = DX.bl) %>%
+ filter(RID %in% PET_IDs)
+
 
 haven::write_dta(adnimerge_03, "adni.dta")
 
