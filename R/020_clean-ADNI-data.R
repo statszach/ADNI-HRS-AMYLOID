@@ -54,22 +54,7 @@ amy_pet_01 <- bind_rows(av45_02, fbb_02) %>%
 
 ## Now the goal is to get just a simple change score for Oct 1 analyses
 
-## Get the IDs used in analysis:
-adni_ids <- readRDS(here::here("R_objects", "041_adni_IDs.RDS"))
-
-# get PET data
-
-amy_pet_02 <- amy_pet_01 %>%
-  dplyr::filter(RID %in% adni_ids$RID)
-
-table(amy_pet_02$VISCODE)
-
-#     bl m108  m12 m120 m132 m144 m156 m168  m24  m36  m48  m60  m72  m84  m96
-# 1  824   34    3   26   33   13   18    4  396   17  257  107  137   77   76
-
-# going to filter for just bl and m24 for ease
-
-amy_pet_test <- amy_pet_02 %>%
+amy_pet_test <- amy_pet_01 %>%
   dplyr::filter(VISCODE == "bl" | VISCODE == "m24" | VISCODE == "m48")
 
 # Convert to CLs
@@ -127,7 +112,6 @@ psych::describe(amy_pet_04$diff_examdate)
 
 cog_data <- adnimerge_01 %>%
   select(RID, VISCODE, EXAMDATE, ADAS11, ADAS13) %>%
-  dplyr::filter(RID %in% adni_ids$RID) %>%
   dplyr::filter(VISCODE == "bl" | VISCODE == "m24" | VISCODE == "m48")
 
 # check that exam date difference is still around 2
@@ -170,7 +154,6 @@ cog_data_03 <- left_join(cog_data_adas11, cog_data_adas13, by = c("RID"))
 
 uwnpsychsum_01 <- uwnpsychsum %>%
   select(RID, ORIGPROT, VISCODE, EXAMDATE, ADNI_MEM, ADNI_EF) %>%
-  dplyr::filter(RID %in% adni_ids$RID) %>%
   dplyr::filter(VISCODE == "bl" | VISCODE == "m24" | VISCODE == "m48") %>%
   dplyr::select(-EXAMDATE, -ORIGPROT)
 
