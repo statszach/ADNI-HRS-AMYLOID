@@ -91,7 +91,7 @@ coef(elasticnet_second, s = cv_second$lambda.min)
 # Generate IOWs
 # Main effects Only
 
-harmonized$predprob_glmnet <- predict(elasticnet_second, newx = predictors_intx[1:1960,], type = "response", s = cv_second$lambda.min)
+harmonized$predprob_glmnet <- predict(elasticnet_second, newx = predictors_intx[1:1350,], type = "response", s = cv_second$lambda.min)
 
 sum_weights_hrs <- harmonized %>%
   dplyr::filter(DATA == "HRS") %>%

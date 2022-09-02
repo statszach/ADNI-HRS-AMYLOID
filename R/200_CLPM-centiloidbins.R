@@ -16,7 +16,7 @@ adni_data <- survey %>%
   rename(RID = ID) %>%
   mutate(RID = as.numeric(RID))
 
-merge1 <- left_join(pet_data, adni_data, by = "RID")
+merge1 <- left_join(adni_data, pet_data, by = "RID")
 merge2 <- left_join(merge1, adas_cog_data, by = "RID")
 
 unweighteddata <- left_join(merge2, uw_cog_data, by = "RID") %>%

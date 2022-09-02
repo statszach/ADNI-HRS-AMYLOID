@@ -1,9 +1,9 @@
 rm(list = setdiff(ls(), lsf.str())[!(setdiff(ls(), lsf.str()) %in% 'params')])
 source(here::here('R', '002_folder-paths-and-options.R'))
 
-hrs <- readRDS(here::here("R_objects", "010_hrs_adams_subsample.RDS"))
+hrs_adams_subsample <- readRDS(here::here("R_objects", "010_hrs_adams_subsample.RDS"))
 
-hrs_subsample_ids <- hrs %>%
+hrs_subsample_ids <- hrs_adams_subsample %>%
   dplyr::filter(subsample == 1) %>%
   dplyr::select(adamssid, dxcat) %>%
   dplyr::rename(ADAMSSID = adamssid)
