@@ -4,15 +4,26 @@ source(here::here('R', '005_libraries.R'))
 
 # Import data
 
-engage_adnimem_results <-    readRDS(here::here("R_objects", "210_engage_adnimem.RDS"))    %>% as.data.frame()
-engage_adnief_results <-     readRDS(here::here("R_objects", "210_engage_adnief.RDS"))     %>% as.data.frame()
-engage_adas13_results <-   readRDS(here::here("R_objects", "210_engage_adas13.RDS"))       %>% as.data.frame()
-donanemab_adnimem_results <- readRDS(here::here("R_objects", "210_donanemab_adnimem.RDS")) %>% as.data.frame()
-donanemab_adnief_results <- readRDS(here::here("R_objects", "210_donanemab_adnief.RDS"))   %>% as.data.frame()
-donanemab_adas13_results <-  readRDS(here::here("R_objects", "210_donanemab_adas13.RDS"))  %>% as.data.frame()
-shouldbe_adnimem_results <-  readRDS(here::here("R_objects", "210_shouldbe_adnimem.RDS"))  %>% as.data.frame()
-shouldbe_adnief_results <-   readRDS(here::here("R_objects", "210_shouldbe_adnief.RDS"))   %>% as.data.frame()
-shouldbe_adas13_results <-   readRDS(here::here("R_objects", "210_shouldbe_adas13.RDS"))   %>% as.data.frame()
+engage_adnimem_results <-    readRDS(here::here("R_objects", "210_engage_adnimem.RDS"))
+engage_adnief_results <-     readRDS(here::here("R_objects", "210_engage_adnief.RDS"))
+engage_adas13_results <-   readRDS(here::here("R_objects", "210_engage_adas13.RDS"))
+donanemab_adnimem_results <- readRDS(here::here("R_objects", "210_donanemab_adnimem.RDS"))
+donanemab_adnief_results <- readRDS(here::here("R_objects", "210_donanemab_adnief.RDS"))
+donanemab_adas13_results <-  readRDS(here::here("R_objects", "210_donanemab_adas13.RDS"))
+shouldbe_adnimem_results <-  readRDS(here::here("R_objects", "210_shouldbe_adnimem.RDS"))
+shouldbe_adnief_results <-   readRDS(here::here("R_objects", "210_shouldbe_adnief.RDS"))
+shouldbe_adas13_results <-   readRDS(here::here("R_objects", "210_shouldbe_adas13.RDS"))
+
+engage_adnimem_results <- engage_adnimem_results$pe
+engage_adnief_results <- engage_adnief_results$pe
+engage_adas13_results <- engage_adas13_results$pe
+donanemab_adnimem_results <- donanemab_adnimem_results$pe
+donanemab_adnief_results <- donanemab_adnief_results$pe
+donanemab_adas13_results <- donanemab_adas13_results$pe
+shouldbe_adnimem_results <- shouldbe_adnimem_results$pe
+shouldbe_adnief_results <- shouldbe_adnief_results$pe
+shouldbe_adas13_results <- shouldbe_adas13_results$pe
+
 
 names(engage_adnimem_results) <- sub(".*\\.", "", names(engage_adnimem_results))
 names(engage_adnief_results) <- sub(".*\\.", "", names(engage_adnief_results))
@@ -1788,3 +1799,88 @@ shouldbe_adas13_figure <- generate_clpm_figure(bl_amyloid_to_bl_cog       = shou
                                                bl_amyloid_to_m24_cog     = shouldbe_adas13_bl_amyloid_m24_cog,
                                                bl_cog_to_m24_amyloid     = shouldbe_adas13_bl_cog_m24_amyloid)
 
+
+width.is <- 6
+height.is <- 3.7
+scale.is <- 1
+
+ggsave(
+  "210_donanemab_adnimem_figure.pdf" ,
+  plot = donanemab_adnimem_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_donanemab_adnief_figure.pdf" ,
+  plot = donanemab_adnief_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_donanemab_adas13_figure.pdf" ,
+  plot = donanemab_adas13_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_engage_adnimem_figure.pdf" ,
+  plot = engage_adnimem_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_engage_adnief_figure.pdf" ,
+  plot = engage_adnief_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_engage_adas13_figure.pdf" ,
+  plot = engage_adas13_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_shouldbe_adnimem_figure.pdf" ,
+  plot = shouldbe_adnimem_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_shouldbe_adnief_figure.pdf" ,
+  plot = shouldbe_adnief_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
+
+ggsave(
+  "210_shouldbe_adas13_figure.pdf" ,
+  plot = shouldbe_adas13_figure ,
+  device = NULL ,
+  scale = scale.is ,
+  width = width.is ,
+  height = height.is ,
+  units = "in" )
