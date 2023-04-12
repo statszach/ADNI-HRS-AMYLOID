@@ -17,6 +17,7 @@ pet_data <- readRDS(here::here("R_objects", "020_amy_pet_04.RDS"))
 
 table(harmonized_imp$GENDER, useNA = "ifany")
 table(as.numeric(harmonized_imp$GENDER), useNA = "ifany")
+table(harmonized_imp$ETHNICITY, useNA = "ifany")
 table(harmonized_imp$DX, useNA = "ifany")
 
 harmonized_imp_amy <- harmonized_imp %>%
@@ -40,6 +41,8 @@ survey_amy_svy <- survey_amy %>%
                  bl_composite, DX) %>%
           mutate(scaled_weights = 1,
                  DATA = "unweighted ADNI")) %>%
+  mutate(GENDER = as.numeric(GENDER) - 1,# Female = 1, male = 0
+         ETHNICITY = as.numeric(ETHNICITY) - 1) %>% # ETHNICITY = 1 hispanic, 0 non-hispanic
   mutate(across(c("GENDER", "ETHNICITY", "APOE41Y0N"),
                 function(x) factor(x, levels = c("1", "0"),
                                    labels = c("Yes", "No"))),
