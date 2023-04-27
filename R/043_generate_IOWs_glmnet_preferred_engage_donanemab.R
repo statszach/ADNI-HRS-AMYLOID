@@ -71,8 +71,6 @@ get_cohen_h <- function(p1, p2){
 
 #---- Function for weight development ----
 weight_dev <- function(subdataset){
-  subdataset <- harmonized
-
   #---- Use elastic net to look at all second order interactions ----
   response <- as.matrix(subdataset$dataset)
   predictors <- subdataset %>%
@@ -227,7 +225,7 @@ shouldbe_harmonized <- harmonized %>% filter(DATA == "HRS" |
                                                ID %in% shouldbe_id)
 shouldbe_results <- weight_dev(shouldbe_harmonized)
 
-#---- Balanced Plots ----
+#---- Balance Plots ----
 for (scenario in c("total", "engage", "donanemab", "shouldbe")){
 
   p <- get(paste0(scenario, "_results"))$plot_data %>%
@@ -245,13 +243,13 @@ for (scenario in c("total", "engage", "donanemab", "shouldbe")){
     theme(axis.title.y = element_blank(),
           legend.position = "none")
 
-  assign(paste0(scenario, "_balanced_plot"), p)
+  assign(paste0(scenario, "_balance_plot"), p)
 }
 
-total_balanced_plot
-engage_balanced_plot
-donanemab_balanced_plot
-shouldbe_balanced_plot
+total_balance_plot
+engage_balance_plot
+donanemab_balance_plot
+shouldbe_balance_plot
 
 #---- Assess overlap of participation ----
 for (scenario in c("total", "engage", "donanemab", "shouldbe")){
